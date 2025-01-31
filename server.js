@@ -396,7 +396,11 @@ app.get('/api/test-db', async (req, res) => {
     }
 });
 
+const backendUrl = process.env.BACKEND_URL || 'http://localhost:3000';
 // Start Server
+// app.listen(port, () => {
+//     console.log(`Server running on http://your-backend-server.com:${port}`);
+// });
 app.listen(port, () => {
-    console.log(`Server running on http://your-backend-server.com:${port}`);
+    console.log(`Server running on ${backendUrl}`);
 });
