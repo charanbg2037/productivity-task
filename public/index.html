@@ -224,7 +224,7 @@
             try {
                 console.log('Attempting login with:', { userId });
                 
-                const response = await fetch("/api/login", {
+                const response = await fetch(`${process.env.BACKEND_URL}/api/login`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ userId, password }),
@@ -240,7 +240,7 @@
                     
                     showCustomAlert("Success!", "Login successful. Redirecting...", "success");
                     setTimeout(() => {
-                        window.location.href = "http://localhost:3000/employee-dashboard";
+                        window.location.href = `${process.env.BACKEND_URL}/employee-dashboard`;
                     }, 1500);
                 } else {
                     showCustomAlert("Login Failed", result.message || "Invalid credentials. Please check your User ID and Password.");

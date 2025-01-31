@@ -575,7 +575,7 @@
 
         async function loadTasks(userId) {
             try {
-                const response = await fetch(`/tasks/employee/${userId}`);
+                const response = await fetch(`${process.env.BACKEND_URL}/tasks/employee/${userId}`);
                 const tasks = await response.json();
 
                 if (tasks && tasks.length) {
@@ -647,7 +647,7 @@
 
         async function markAsComplete(taskId) {
             try {
-                const response = await fetch(`http://localhost:3000/tasks/mark-complete`, {
+                const response = await fetch(`${process.env.BACKEND_URL}/tasks/mark-complete`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
