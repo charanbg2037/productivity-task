@@ -1,3 +1,6 @@
+const API_BASE_URL = "https://productivity-task.onrender.com/";
+
+
 // Check if user is logged in when page loads
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('Page loaded, checking for userId');
@@ -6,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!userId) {
         console.log('No userId found, redirecting to login');
-        window.location.href = '/index3.html';
+        window.location.href = `./index3.html`;
         return;
     }
     await loadManagerData(userId);
@@ -16,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function loadManagerData(userId) {
     try {
         console.log('Fetching manager data for userId:', userId);
-        const response = await fetch(`${process.env.BACKEND_URL}/api/manager-info/${userId}`);
+        const response = await fetch(`${API_BASE_URL}/api/manager-info/${userId}`);
         const data = await response.json();
         console.log('Manager data received:', data);
         
@@ -84,7 +87,7 @@ function showDepartments(departments) {
 async function loadEmployees(department) {
     try {
         console.log('Loading employees for department:', department);
-        const response = await fetch(`${process.env.BACKEND_URL}/api/employees-by-departments?departments=${department}`);
+        const response = await fetch(`${API_BASE_URL}/api/employees-by-departments?departments=${department}`);
         const data = await response.json();
         console.log('Employee data received:', data);
 
@@ -161,5 +164,5 @@ function createTask() {
 function logout() {
     console.log('Logging out');
     sessionStorage.clear();
-    window.location.href = '/index3.html';
+    window.location.href = './index3.html';
 }

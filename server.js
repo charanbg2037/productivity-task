@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const API_BASE_URL = "https://productivity-task.onrender.com/";
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -10,6 +11,7 @@ const port = 3000;
 // Middleware
 app.use(bodyParser.json());
 app.use(express.static('public')); // Serve static files
+
 
 const MONGODB_URI = `mongodb+srv://kishanknaik03:${process.env.MONGODB_PASSWORD}@aws1freecluster.pa4wd.mongodb.net/db?retryWrites=true&w=majority&appName=AWS1FreeCluster`;
 
@@ -59,6 +61,11 @@ const taskSchema = new mongoose.Schema(
 );
 
 const Task = mongoose.model('Task', taskSchema);
+
+// API to Send Environment Variables to Frontend
+app.get("/api/config", (req, res) => {
+    res.json({ BACKEND_URL: process.env.BACKEND_URL || "http://localhost:3000" });
+});
 
 // Login Endpoint
 app.post('/api/login', async (req, res) => {
